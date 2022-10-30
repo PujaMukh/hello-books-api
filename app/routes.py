@@ -47,13 +47,19 @@ def get_all_books(book_id):
     books_response = []
     for book in books:
         if book.id == book_id:
-            books_response.append({
-                "id": book.id,
-                "title": book.title,
-                "description": book.description
-            })
+    #         books_response.append({
+    #             "id": book.id,
+    #             "title": book.title,
+    #             "description": book.description
+    #         })
     
-    return jsonify(books_response)
+    # return jsonify(books_response)
+               return { 
+                "id" : book.id,
+                "title" : book.title,
+                "description": book.description
+               }
+    return {"message": f"book with {book_id} not found"}, 404
 
 
     
