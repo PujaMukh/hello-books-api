@@ -41,15 +41,17 @@ books = [
     ]
 
 
-@books_bp.route("/books", methods = ["GET"])
-def get_all_books():
+@books_bp.route("/books/<book_id>", methods = ["GET"])
+def get_all_books(book_id):
+    book_id = int(book_id)
     books_response = []
     for book in books:
-        books_response.append({
-            "id": book.id,
-            "title": book.title,
-            "description": book.description
-        })
+        if book.id == book_id:
+            books_response.append({
+                "id": book.id,
+                "title": book.title,
+                "description": book.description
+            })
     
     return jsonify(books_response)
 
