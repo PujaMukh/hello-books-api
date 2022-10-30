@@ -43,7 +43,10 @@ books = [
 
 @books_bp.route("/books/<book_id>", methods = ["GET"])
 def get_all_books(book_id):
-    book_id = int(book_id)
+    try:
+        book_id = int(book_id)
+    except:
+        return {"message": f"book_id {book_id} not valid"}, 400
     books_response = []
     for book in books:
         if book.id == book_id:
