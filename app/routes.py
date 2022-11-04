@@ -86,7 +86,7 @@ def validate_book(book_id):
     try:
         book_id = int(book_id)
     except:
-        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+        abort(make_response({"message":f"book {book_id} invalid"}, 404))
 
     book = Book.query.get(book_id)
 
