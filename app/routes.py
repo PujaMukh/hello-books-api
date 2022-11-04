@@ -136,7 +136,9 @@ def filter_all_books_with_matching_title():
     else:
         books = Book.query.all()
     # end of the new code
+    #Book.query.limit(100).all()
 
+    
     books_response = []
     for book in books:
         books_response.append({
