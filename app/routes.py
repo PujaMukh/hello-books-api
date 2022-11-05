@@ -59,16 +59,26 @@ from flask import Blueprint, jsonify, make_response, request,abort
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
 @books_bp.route("", methods=["POST"])
-def handle_books():
+def create_book():
     request_body = request.get_json()
-    new_book = Book(title=request_body["title"],
-                    description=request_body["description"])
+    new_book = Book.from_dict(request_body)
 
     db.session.add(new_book)
     db.session.commit()
 
-    # return make_response(f"Book {new_book.title} successfully created", 201)
     return make_response(jsonify(f"Book {new_book.title} successfully created"), 201)
+
+# @books_bp.route("", methods=["POST"])
+# def create_books():
+#     request_body = request.get_json()
+#     new_book = Book(title=request_body["title"],
+#                     description=request_body["description"])
+
+#     db.session.add(new_book)
+#     db.session.commit()
+
+#     # return make_response(f"Book {new_book.title} successfully created", 201)
+#     return make_response(jsonify(f"Book {new_book.title} successfully created"), 201)
 
 # @books_bp.route("", methods=["GET"])
 # def get_all_books():
