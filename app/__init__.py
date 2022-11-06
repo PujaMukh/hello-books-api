@@ -30,3 +30,4 @@ def create_app(test_config=None):
     app.register_blueprint(books_bp)
 
     return app
+
